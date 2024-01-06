@@ -1,5 +1,7 @@
 package org.lambda.expressions;
 
+import java.util.function.Predicate;
+
 class Student {
     int id;
     public int getId() {
