@@ -3,6 +3,7 @@ package org.functional.interfaces;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Student {
@@ -85,10 +86,21 @@ public class Student {
         Consumer<Student> studentConsumer = new Consumer<Student>() {
             @Override
             public void accept(Student student) {
-                System.out.println("Student name: "+student.getName()+ "Student percentage : "+student.getPercentage());
+                System.out.println("Student name: "+student.getName()+ " Student percentage : "+student.getPercentage());
             }
         };
 
         listOfStudents.forEach(studentConsumer::accept);
+        Function<Student,String> nameFunction = new Function<Student, String>() {
+            @Override
+            public String apply(Student student) {
+                return student.getName();
+            }
+        };
+        List<String> list = new ArrayList<>();
+        listOfStudents.forEach(student -> {
+            list.add(nameFunction.apply(student));
+        });
+        System.out.println("Student names : "+list);
     }
 }
