@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Student {
     int id;
@@ -102,5 +103,15 @@ public class Student {
             list.add(nameFunction.apply(student));
         });
         System.out.println("Student names : "+list);
+
+
+        Supplier<Student> studentSupplier = new Supplier<Student>() {
+            @Override
+            public Student get() {
+                return new Student(101010, "Chris", 89.8, "Computers");
+            }
+        };
+        listOfStudents.add(studentSupplier.get());
+        System.out.println(listOfStudents);
     }
 }
